@@ -22,3 +22,24 @@ footer {
   text-align: center;
   color: gray;
 }
+
+body {
+  background-color: #fffdf8;
+}
+
+.home-hero {
+  background-color: #fff3d9;
+}
+
+.home-hero__image {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.form-check-label {
+  cursor: pointer;
+}

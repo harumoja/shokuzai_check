@@ -1,30 +1,72 @@
+<section class="container py-4">
+  <div class="home-hero text-center rounded-4 p-4 p-md-5 mb-5">
+    <div class="home-hero__image mb-3">
+      👶
+    </div>
 
-<h1>パパッと食材チェック</h1>
+    <h1 class="fw-bold mb-3">
+      試したい食材から<br>
+      ベビーフードをかんたん検索
+    </h1>
 
-<p>
-保育園入園前の食材チェックをサポートするアプリです。
-</p>
+    <p class="text-secondary mb-0">
+      お子さまに食べさせたい食材を選ぶと、<br class="d-none d-md-block">
+      選択した食材が原材料として含まれる市販のベビーフードを探せます。
+    </p>
+  </div>
 
-<hr>
+  <div class="mb-4">
+    <h2 class="h4 fw-bold mb-2">
+      試したい食材を選択してください
+    </h2>
 
-<h2>食材一覧</h2>
+    <p class="text-secondary">
+      複数の食材を選択できます。
+    </p>
+  </div>
 
-<ul>
-  <% @ingredients.each do |ingredient| %>
-    <li>
-      <%= ingredient.name %>
+  <%= form_with url: babyfoods_path, method: :get, local: true do %>
+    <div class="row g-4">
+      <% @ingredients.group_by(&:category).each do |category, ingredients| %>
+        <div class="col-12 col-md-6">
+          <section class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h3 class="h5 fw-bold border-bottom pb-3 mb-3">
+                <%= category %>
+              </h3>
 
-      （
-      <%= ingredient.category %>
+              <div class="row g-2">
+                <% ingredients.each do |ingredient| %>
+                  <div class="col-6">
+                    <div class="form-check">
+                      <%= check_box_tag(
+                        "ingredient_ids[]",
+                        ingredient.id,
+                        false,
+                        id: "ingredient_#{ingredient.id}",
+                        class: "form-check-input"
+                      ) %>
 
-      ・
+                      <%= label_tag(
+                        "ingredient_#{ingredient.id}",
+                        ingredient.name,
+                        class: "form-check-label"
+                      ) %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </section>
+        </div>
+      <% end %>
+    </div>
 
-      <%= ingredient.stage %>
-      ）
-    </li>
+    <div class="d-grid col-12 col-md-6 mx-auto mt-5">
+      <%= submit_tag(
+        "ベビーフードを検索する",
+        class: "btn btn-primary btn-lg rounded-pill"
+      ) %>
+    </div>
   <% end %>
-</ul>
-
-<hr>
-
-<%= link_to "ベビーフード一覧を見る", babyfoods_path %>
+</section>
