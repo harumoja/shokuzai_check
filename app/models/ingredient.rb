@@ -7,7 +7,7 @@ class Ingredient < ApplicationRecord
   CATEGORIES = [
     "穀類・いも類",
     "野菜",
-    "たんぱく質",
+    "たんぱく質食品",
     "果物",
     "調味料・その他"
   ].freeze
