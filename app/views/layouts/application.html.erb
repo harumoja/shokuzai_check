@@ -24,6 +24,28 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>
+        <%= link_to "パパッと食材チェック", root_path %>
+      </h1>
+
+      <p>
+        保育園入園前の食材チェックをサポート
+      </p>
+
+      <hr>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <hr>
+
+    <footer>
+      <small>
+        © 2026 パパッと食材チェック
+      </small>
+    </footer>
   </body>
 </html>

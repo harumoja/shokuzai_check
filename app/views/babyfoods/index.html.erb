@@ -1,2 +1,32 @@
-<h1>Babyfoods#index</h1>
-<p>Find me in app/views/babyfoods/index.html.erb</p>
+<h1>ベビーフード一覧</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>メーカー</th>
+      <th>商品名</th>
+      <th>対象時期</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @babyfoods.each do |babyfood| %>
+      <tr>
+        <td><%= babyfood.manufacturer %></td>
+
+        <td><%= babyfood.name %></td>
+
+        <td><%= babyfood.stage %></td>
+
+        <td>
+          <%= link_to "詳細", babyfood_path(babyfood) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "トップへ戻る", root_path %>

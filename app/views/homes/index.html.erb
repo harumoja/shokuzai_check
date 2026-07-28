@@ -1,2 +1,30 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+
+<h1>パパッと食材チェック</h1>
+
+<p>
+保育園入園前の食材チェックをサポートするアプリです。
+</p>
+
+<hr>
+
+<h2>食材一覧</h2>
+
+<ul>
+  <% @ingredients.each do |ingredient| %>
+    <li>
+      <%= ingredient.name %>
+
+      （
+      <%= ingredient.category %>
+
+      ・
+
+      <%= ingredient.stage %>
+      ）
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to "ベビーフード一覧を見る", babyfoods_path %>
