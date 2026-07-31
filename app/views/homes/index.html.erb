@@ -1,2 +1,194 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<% stage_information = {
+  "初期" => {
+    label: "初期（5〜6ヶ月）",
+    class_name: "ingredient-stage--early"
+  },
+  "中期" => {
+    label: "中期（7〜8ヶ月）",
+    class_name: "ingredient-stage--middle"
+  },
+  "後期" => {
+    label: "後期（9〜11ヶ月）",
+    class_name: "ingredient-stage--late"
+  },
+  "完了期" => {
+    label: "完了期（12ヶ月〜）",
+    class_name: "ingredient-stage--complete"
+  }
+} %>
+
+<section class="home-page">
+  <div class="container py-4">
+    <section class="home-hero mb-4">
+      <div class="row g-0 align-items-stretch">
+        <div class="col-12 col-lg-7">
+          <div class="home-hero__content">
+            <h1 class="home-hero__title">
+              赤ちゃんの食材チェックを、<br>
+              もっと<span>楽</span>に、もっと<span>早</span>く。
+            </h1>
+
+            <p class="home-hero__description">
+              試したい食材を選んで検索するだけ！<br>
+              市販のベビーフードから、含まれている商品を一覧で確認できます。<br>
+              保育園の食材チェックを効率的に進めましょう。
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+          <%= image_tag(
+            "baby_eating.jpg",
+            alt: "離乳食を食べている赤ちゃん",
+            class: "home-hero__image"
+          ) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="ingredient-search-card">
+      <div class="ingredient-search-card__header">
+        <h2 class="h5 fw-bold mb-1">
+          食材をチェックして検索できます
+        </h2>
+
+        <p class="small text-secondary mb-0">
+          お子さまが食べたことのある食材を選択してください。
+        </p>
+      </div>
+
+      <%= form_with url: babyfoods_path, method: :get, local: true do %>
+        <div
+          class="accordion ingredient-accordion"
+          id="ingredientAccordion"
+        >
+          <% @ingredients.group_by(&:category).each_with_index do |(category, category_ingredients), category_index| %>
+            <% heading_id = "ingredientHeading#{category_index}" %>
+            <% collapse_id = "ingredientCollapse#{category_index}" %>
+
+            <div class="accordion-item">
+              <h3
+                class="accordion-header"
+                id="<%= heading_id %>"
+              >
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#<%= collapse_id %>"
+                  aria-expanded="false"
+                  aria-controls="<%= collapse_id %>"
+                >
+                  <%= category %>
+                </button>
+              </h3>
+
+              <div
+                id="<%= collapse_id %>"
+                class="accordion-collapse collapse"
+                aria-labelledby="<%= heading_id %>"
+              >
+                <div class="accordion-body">
+                  <% category_ingredients.group_by(&:stage).each do |stage, stage_ingredients| %>
+                    <% stage_data = stage_information[stage] %>
+
+                    <section class="ingredient-stage-group">
+                      <h4
+                        class="
+                          ingredient-stage-title
+                          <%= stage_data&.dig(:class_name) %>
+                        "
+                      >
+                        <%= stage_data&.dig(:label) || stage %>
+                      </h4>
+
+                      <div class="row row-cols-2 row-cols-md-3 g-3">
+                        <% stage_ingredients.each do |ingredient| %>
+                          <div class="col">
+                            <div class="form-check ingredient-check">
+                              <%= check_box_tag(
+                                "ingredient_ids[]",
+                                ingredient.id,
+                                false,
+                                id: "ingredient_#{ingredient.id}",
+                                class: "form-check-input"
+                              ) %>
+
+                              <%= label_tag(
+                                "ingredient_#{ingredient.id}",
+                                ingredient.name,
+                                class: "form-check-label"
+                              ) %>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </section>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <section class="search-condition-card mt-4 mb-3">
+          <h2 class="search-condition-card__title">
+            検索条件
+          </h2>
+
+          <div class="form-check mb-3">
+            <%= radio_button_tag(
+              :search_type,
+              "and",
+              true,
+              id: "search_type_and",
+              class: "form-check-input"
+            ) %>
+
+            <%= label_tag(
+              "search_type_and",
+              class: "form-check-label"
+            ) do %>
+              <strong>AND検索</strong>
+
+              <span class="small">
+                （すべての食材を含む商品を検索）
+              </span>
+            <% end %>
+          </div>
+
+          <div class="form-check">
+            <%= radio_button_tag(
+              :search_type,
+              "or",
+              false,
+              id: "search_type_or",
+              class: "form-check-input"
+            ) %>
+
+            <%= label_tag(
+              "search_type_or",
+              class: "form-check-label"
+            ) do %>
+              <strong>OR検索</strong>
+
+              <span class="small">
+                （いずれかの食材を含む商品を検索）
+              </span>
+            <% end %>
+          </div>
+        </section>
+
+        <div class="d-grid">
+          <%= button_tag(
+            type: "submit",
+            class: "home-search-button"
+          ) do %>
+            <span aria-hidden="true">⌕</span>
+            ベビーフードを検索する
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </div>
+</section>

@@ -23,7 +23,31 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <%= link_to root_path, class: "site-logo" do %>
+          <span class="site-logo__baby" aria-hidden="true">👶</span>
+          <span class="site-logo__text">パパッと食材チェック</span>
+          <span class="site-logo__sprout" aria-hidden="true">🌱</span>
+        <% end %>
+
+        <%= link_to "？ 使い方", root_path(anchor: "how-to-use"), class: "site-header__help" %>
+      </div>
+    </div>
+  </header>
+
+  <main>
     <%= yield %>
-  </body>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>
+        © <%= Time.current.year %> パパッと食材チェック
+      </small>
+    </div>
+  </footer>
+</body>
 </html>

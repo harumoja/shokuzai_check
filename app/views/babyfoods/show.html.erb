@@ -1,2 +1,29 @@
-<h1>Babyfoods#show</h1>
-<p>Find me in app/views/babyfoods/show.html.erb</p>
+<h1><%= @babyfood.name %></h1>
+
+<p>
+メーカー：
+
+<%= @babyfood.manufacturer %>
+</p>
+
+<p>
+対象時期：
+
+<%= @babyfood.stage %>
+</p>
+
+<hr>
+
+<h2>使用食材</h2>
+
+<ul>
+  <% @babyfood.ingredients.each do |ingredient| %>
+    <li>
+      <%= ingredient.name %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to "一覧へ戻る", babyfoods_path %>
