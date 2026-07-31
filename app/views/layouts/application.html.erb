@@ -23,29 +23,31 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <header>
-      <h1>
-        <%= link_to "パパッと食材チェック", root_path %>
-      </h1>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <%= link_to root_path, class: "site-logo" do %>
+          <span class="site-logo__baby" aria-hidden="true">👶</span>
+          <span class="site-logo__text">パパッと食材チェック</span>
+          <span class="site-logo__sprout" aria-hidden="true">🌱</span>
+        <% end %>
 
-      <p>
-        保育園入園前の食材チェックをサポート
-      </p>
+        <%= link_to "？ 使い方", root_path(anchor: "how-to-use"), class: "site-header__help" %>
+      </div>
+    </div>
+  </header>
 
-      <hr>
-    </header>
+  <main>
+    <%= yield %>
+  </main>
 
-    <main>
-      <%= yield %>
-    </main>
-
-    <hr>
-
-    <footer>
+  <footer class="site-footer">
+    <div class="container">
       <small>
-        © 2026 パパッと食材チェック
+        © <%= Time.current.year %> パパッと食材チェック
       </small>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
 </html>

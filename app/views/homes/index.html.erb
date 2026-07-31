@@ -5,40 +5,86 @@
     </div>
 
     <h1 class="fw-bold mb-3">
-      試したい食材から<br>
+      食べられる食材から<br>
       ベビーフードをかんたん検索
     </h1>
 
     <p class="text-secondary mb-0">
-      お子さまに食べさせたい食材を選ぶと、<br class="d-none d-md-block">
-      選択した食材が原材料として含まれる市販のベビーフードを探せます。
+      お子さまが食べたことのある食材を選ぶと、<br class="d-none d-md-block">
+      条件に合う市販のベビーフードを探せます。
     </p>
   </div>
 
-  <div class="mb-4">
-    <h2 class="h4 fw-bold mb-2">
-      試したい食材を選択してください
-    </h2>
+  <section class="ingredient-search-card">
+    <div class="mb-4">
+      <h2 class="h4 fw-bold mb-2">
+        食材をチェックして検索できます
+      </h2>
 
-    <p class="text-secondary">
-      複数の食材を選択できます。
-    </p>
-  </div>
+      <p class="text-secondary mb-0">
+        お子さまが食べたことのある食材を選択してください。
+      </p>
+    </div>
 
-  <%= form_with url: babyfoods_path, method: :get, local: true do %>
-    <div class="row g-4">
-      <% @ingredients.group_by(&:category).each do |category, ingredients| %>
-        <div class="col-12 col-md-6">
-          <section class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h3 class="h5 fw-bold border-bottom pb-3 mb-3">
-                <%= category %>
-              </h3>
+    <%= form_with url: babyfoods_path, method: :get, local: true do %>
+      <% stage_information = {
+        "初期" => {
+          label: "初期（5〜6ヶ月）",
+          class_name: "ingredient-stage--early"
+        },
+        "中期" => {
+          label: "中期（7〜8ヶ月）",
+          class_name: "ingredient-stage--middle"
+        },
+        "後期" => {
+          label: "後期（9〜11ヶ月）",
+          class_name: "ingredient-stage--late"
+        },
+        "完了期" => {
+          label: "完了期（12ヶ月〜）",
+          class_name: "ingredient-stage--complete"
+        }
+      } %>
 
-              <div class="row g-2">
-                <% ingredients.each do |ingredient| %>
-                  <div class="col-6">
-                    <div class="form-check">
+<div class="accordion ingredient-accordion" id="ingredientAccordion">
+  <% @ingredients.group_by(&:category).each_with_index do |(category, category_ingredients), category_index| %>
+    <% heading_id = "ingredientHeading#{category_index}" %>
+    <% collapse_id = "ingredientCollapse#{category_index}" %>
+
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="<%= heading_id %>">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#<%= collapse_id %>"
+          aria-expanded="false"
+          aria-controls="<%= collapse_id %>"
+        >
+          <span class="ingredient-category-name">
+            <%= category %>
+          </span>
+        </button>
+      </h3>
+
+      <div
+        id="<%= collapse_id %>"
+        class="accordion-collapse collapse"
+        aria-labelledby="<%= heading_id %>"
+      >
+        <div class="accordion-body">
+          <% category_ingredients.group_by(&:stage).each do |stage, stage_ingredients| %>
+            <% stage_data = stage_information[stage] %>
+
+            <section class="ingredient-stage-group">
+              <h4 class="ingredient-stage-title <%= stage_data&.dig(:class_name) %>">
+                <%= stage_data&.dig(:label) || stage %>
+              </h4>
+
+              <div class="row row-cols-2 row-cols-md-3 g-3">
+                <% stage_ingredients.each do |ingredient| %>
+                  <div class="col">
+                    <div class="form-check ingredient-check">
                       <%= check_box_tag(
                         "ingredient_ids[]",
                         ingredient.id,
@@ -56,17 +102,20 @@
                   </div>
                 <% end %>
               </div>
-            </div>
-          </section>
+            </section>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="d-grid col-12 col-md-6 mx-auto mt-5">
-      <%= submit_tag(
-        "ベビーフードを検索する",
-        class: "btn btn-primary btn-lg rounded-pill"
-      ) %>
+      </div>
     </div>
   <% end %>
+</div>
+
+      <div class="d-grid col-12 col-md-6 mx-auto mt-5">
+        <%= submit_tag(
+          "ベビーフードを検索する",
+          class: "btn btn-primary btn-lg"
+        ) %>
+      </div>
+    <% end %>
+  </section>
 </section>
