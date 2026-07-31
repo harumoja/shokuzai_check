@@ -2,85 +2,158 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 body {
-  font-family: sans-serif;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px;
-  line-height: 1.8;
-}
-
-header {
-  margin-bottom: 32px;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fffdf9;
+  color: #2d211c;
 }
 
 main {
-  min-height: 500px;
+  min-height: calc(100vh - 150px);
 }
 
-footer {
-  margin-top: 48px;
-  text-align: center;
-  color: gray;
+.site-header {
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #ffffff;
 }
 
-body {
-  background-color: #fffdf8;
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  gap: 1rem;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  color: #211814;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-logo:hover {
+  color: #211814;
+}
+
+.site-logo__baby {
+  margin-right: 0.4rem;
+  font-size: 1.7rem;
+}
+
+.site-logo__sprout {
+  margin-left: 0.25rem;
+  font-size: 1rem;
+}
+
+.site-header__help {
+  color: #211814;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-header__help:hover {
+  text-decoration: underline;
+}
+
+.home-page {
+  width: 100%;
 }
 
 .home-hero {
-  background-color: #fff3d9;
+  overflow: hidden;
+  border: 1px solid #f0dfbc;
+  border-radius: 0.75rem;
+  background-color: #fffaf0;
+}
+
+.home-hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  padding: 2rem;
+}
+
+.home-hero__title {
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.65rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.home-hero__title span {
+  color: #f15a24;
+}
+
+.home-hero__description {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  line-height: 1.9;
 }
 
 .home-hero__image {
-  font-size: 5rem;
-  line-height: 1;
-}
-
-.card {
-  border-radius: 1rem;
-}
-
-.form-check-label {
-  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: center 38%;
 }
 
 .ingredient-search-card {
   padding: 1.5rem;
-  border: 1px solid #dee2e6;
+  border: 1px solid #dddddd;
   border-radius: 0.75rem;
   background-color: #ffffff;
 }
 
+.ingredient-search-card__header {
+  margin-bottom: 1.25rem;
+}
+
 .ingredient-accordion {
-  --bs-accordion-border-color: #dee2e6;
+  --bs-accordion-border-color: #dddddd;
   --bs-accordion-border-radius: 0.5rem;
   --bs-accordion-inner-border-radius: 0.5rem;
+}
+
+.ingredient-accordion .accordion-item {
+  overflow: hidden;
 }
 
 .ingredient-accordion .accordion-button {
   padding: 1rem;
   background-color: #ffffff;
+  color: #211814;
   font-weight: 700;
 }
 
+.ingredient-accordion .accordion-button:hover {
+  background-color: #fffaf0;
+}
+
 .ingredient-accordion .accordion-button:not(.collapsed) {
-  color: #212529;
-  background-color: #fff8ec;
+  background-color: #fff8e8;
+  color: #211814;
   box-shadow: none;
 }
 
 .ingredient-accordion .accordion-button:focus {
+  border-color: #f0dfbc;
   box-shadow: 0 0 0 0.25rem rgba(255, 153, 0, 0.2);
 }
 
-.ingredient-category-name {
-  font-size: 1rem;
+.ingredient-accordion .accordion-body {
+  padding: 1.25rem;
 }
 
 .ingredient-stage-group {
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: 1px dashed #dee2e6;
+  border-bottom: 1px dashed #dddddd;
 }
 
 .ingredient-stage-group:last-child {
@@ -96,11 +169,11 @@ body {
 }
 
 .ingredient-stage--early {
-  color: #54a846;
+  color: #59aa43;
 }
 
 .ingredient-stage--middle {
-  color: #2777d3;
+  color: #2275d7;
 }
 
 .ingredient-stage--late {
@@ -108,7 +181,7 @@ body {
 }
 
 .ingredient-stage--complete {
-  color: #8b5bc4;
+  color: #8c5bc4;
 }
 
 .ingredient-check {
@@ -129,4 +202,126 @@ body {
   line-height: 1.5;
   cursor: pointer;
   overflow-wrap: anywhere;
+}
+
+.search-condition-card {
+  padding: 1rem;
+  border: 1px solid #d9e4ef;
+  border-radius: 0.5rem;
+  background-color: #f7faff;
+}
+
+.search-condition-card__title {
+  margin-bottom: 1rem;
+  color: #1261a0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.home-search-button {
+  min-height: 56px;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: #ff9800;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.home-search-button:hover {
+  background-color: #ed8d00;
+  color: #ffffff;
+}
+
+.home-search-button:focus-visible {
+  outline: 3px solid rgba(255, 152, 0, 0.35);
+  outline-offset: 3px;
+}
+
+.site-footer {
+  padding: 1.5rem 0;
+  color: #888888;
+  text-align: center;
+}
+
+/*
+  ここからスマートフォン用の指定です。
+
+  別ファイルではなく、
+  application.bootstrap.scssの一番下に書きます。
+*/
+@media (max-width: 767.98px) {
+  .site-header__inner {
+    min-height: 60px;
+  }
+
+  .site-logo {
+    font-size: 1rem;
+  }
+
+  .site-logo__baby {
+    font-size: 1.35rem;
+  }
+
+  .site-logo__sprout {
+    font-size: 0.85rem;
+  }
+
+  .site-header__help {
+    font-size: 0.8rem;
+  }
+
+  .home-hero__content {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .home-hero__title {
+    font-size: 1.55rem;
+  }
+
+  .home-hero__description {
+    font-size: 0.9rem;
+  }
+
+  .home-hero__description br {
+    display: none;
+  }
+
+  .home-hero__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center 38%;
+  }
+
+  .ingredient-search-card {
+    padding: 1rem;
+  }
+
+  .ingredient-accordion .accordion-button {
+    padding: 0.85rem;
+  }
+
+  .ingredient-accordion .accordion-body {
+    padding: 1rem;
+  }
+
+  .ingredient-stage-group {
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .search-condition-card .form-check-label {
+    line-height: 1.6;
+  }
+
+  .search-condition-card .form-check-label span {
+    display: block;
+  }
+
+  .home-search-button {
+    min-height: 52px;
+    font-size: 1rem;
+  }
 }
