@@ -1,29 +1,176 @@
-<h1><%= @babyfood.name %></h1>
+<% matched_ingredients = @babyfood.ingredients.select do |ingredient| %>
+  <% @selected_ingredient_ids.include?(ingredient.id) %>
+<% end %>
 
-<p>
-メーカー：
+<% back_path =
+  if @selected_ingredient_ids.present?
+    babyfoods_path(
+      ingredient_ids: @selected_ingredient_ids,
+      search_type: @search_type
+    )
+  else
+    babyfoods_path
+  end
+%>
 
-<%= @babyfood.manufacturer %>
-</p>
+<section class="babyfood-detail-page">
+  <div class="container py-4">
+    <header class="babyfood-detail-header mb-4">
+      <%= link_to back_path, class: "babyfood-detail-back-link" do %>
+        <span aria-hidden="true">‹</span>
+        戻る
+      <% end %>
 
-<p>
-対象時期：
+      <h1 class="babyfood-detail-page-title">
+        ベビーフード詳細
+      </h1>
 
-<%= @babyfood.stage %>
-</p>
+      <div aria-hidden="true"></div>
+    </header>
 
-<hr>
+    <section class="babyfood-detail-card">
+      <div class="babyfood-detail-main">
+        <div class="babyfood-detail-image-area">
+          <% if @babyfood.image_url.present? %>
+            <%= image_tag(
+              @babyfood.image_url,
+              alt: @babyfood.name,
+              class: "babyfood-detail-image"
+            ) %>
+          <% else %>
+            <div class="babyfood-detail-image-placeholder">
+              <span aria-hidden="true">🍼</span>
+              <span>画像準備中</span>
+            </div>
+          <% end %>
+        </div>
 
-<h2>使用食材</h2>
+        <div class="babyfood-detail-information">
+          <p class="babyfood-detail-manufacturer">
+            <%= @babyfood.manufacturer %>
+          </p>
 
-<ul>
-  <% @babyfood.ingredients.each do |ingredient| %>
-    <li>
-      <%= ingredient.name %>
-    </li>
-  <% end %>
-</ul>
+          <h2 class="babyfood-detail-name">
+            <%= @babyfood.name %>
+          </h2>
 
-<hr>
+          <dl class="babyfood-detail-summary">
+            <div>
+              <dt>メーカー：</dt>
+              <dd><%= @babyfood.manufacturer %></dd>
+            </div>
 
-<%= link_to "一覧へ戻る", babyfoods_path %>
+            <div>
+              <dt>対象月齢：</dt>
+              <dd><%= @babyfood.stage.presence || "未設定" %></dd>
+            </div>
+
+            <% if @selected_ingredients.present? %>
+              <div>
+                <dt>一致した食材：</dt>
+
+                <dd class="babyfood-detail-matched-ingredients">
+                  <% if matched_ingredients.present? %>
+                    <%= matched_ingredients.map(&:name).join("、") %>
+                  <% else %>
+                    なし
+                  <% end %>
+                </dd>
+              </div>
+
+              <div>
+                <dt>一致数：</dt>
+
+                <dd class="babyfood-detail-match-count">
+                  <strong><%= matched_ingredients.size %></strong>
+                  /
+                  <%= @selected_ingredients.size %>件一致
+                </dd>
+              </div>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+
+      <section class="babyfood-ingredients-section">
+        <h2 class="babyfood-detail-section-title">
+          原材料
+        </h2>
+
+        <% if @babyfood.ingredients.present? %>
+          <ul class="babyfood-ingredients-list">
+            <% @babyfood.ingredients.each do |ingredient| %>
+              <% is_matched = @selected_ingredient_ids.include?(ingredient.id) %>
+
+              <li class="<%= "is-matched" if is_matched %>">
+                <%= ingredient.name %>
+
+                <% if is_matched %>
+                  <span class="visually-hidden">
+                    選択した食材と一致
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-secondary mb-0">
+            原材料情報は準備中です。
+          </p>
+        <% end %>
+      </section>
+
+      <section class="babyfood-purchase-section">
+        <h2 class="babyfood-detail-section-title">
+          購入リンク
+        </h2>
+
+        <% if @babyfood.amazon_url.present? || @babyfood.rakuten_url.present? %>
+          <div class="babyfood-purchase-links">
+            <% if @babyfood.amazon_url.present? %>
+              <%= link_to(
+                @babyfood.amazon_url,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                class: "babyfood-purchase-link"
+              ) do %>
+                <span class="babyfood-purchase-link__service">
+                  Amazon
+                </span>
+
+                <span>
+                  Amazonで見る
+                </span>
+
+                <span aria-hidden="true">↗</span>
+              <% end %>
+            <% end %>
+
+            <% if @babyfood.rakuten_url.present? %>
+              <%= link_to(
+                @babyfood.rakuten_url,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                class: "babyfood-purchase-link"
+              ) do %>
+                <span class="babyfood-purchase-link__service babyfood-purchase-link__service--rakuten">
+                  R
+                </span>
+
+                <span>
+                  楽天市場で見る
+                </span>
+
+                <span aria-hidden="true">↗</span>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="babyfood-purchase-links-empty">
+            購入リンクは準備中です。
+          </p>
+        <% end %>
+      </section>
+    </section>
+  </div>
+</section>
