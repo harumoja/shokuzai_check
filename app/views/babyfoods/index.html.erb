@@ -1,32 +1,173 @@
-<h1>ベビーフード一覧</h1>
+<section class="search-results-page">
+  <div class="container py-4">
+    <header class="search-results-header mb-3">
+      <%= link_to root_path, class: "search-results-back-link" do %>
+        <span aria-hidden="true">‹</span>
+        戻る
+      <% end %>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>メーカー</th>
-      <th>商品名</th>
-      <th>対象時期</th>
-      <th>詳細</th>
-    </tr>
-  </thead>
+      <h1 class="search-results-title">
+        検索結果
+      </h1>
 
-  <tbody>
-    <% @babyfoods.each do |babyfood| %>
-      <tr>
-        <td><%= babyfood.manufacturer %></td>
+      <%= link_to(
+        "条件を変更",
+        root_path,
+        class: "btn btn-outline-secondary btn-sm"
+      ) %>
+    </header>
 
-        <td><%= babyfood.name %></td>
+    <section class="search-summary-card mb-3">
+      <% if @selected_ingredients.present? %>
+        <p class="mb-2">
+          選択した食材：
+          <strong>
+            <%= @selected_ingredients.map(&:name).join("、") %>
+          </strong>
+        </p>
 
-        <td><%= babyfood.stage %></td>
+        <p class="mb-2">
+          検索方法：
+          <strong>
+            <%= @search_type == "or" ? "OR検索" : "AND検索" %>
+          </strong>
 
-        <td>
-          <%= link_to "詳細", babyfood_path(babyfood) %>
-        </td>
-      </tr>
+          <span class="small text-secondary">
+            <% if @search_type == "or" %>
+              （いずれかの食材を含む商品）
+            <% else %>
+              （すべての食材を含む商品）
+            <% end %>
+          </span>
+        </p>
+      <% else %>
+        <p class="mb-2">
+          食材が選択されていないため、すべての商品を表示しています。
+        </p>
+      <% end %>
+
+      <p class="search-results-count mb-0">
+        該当件数：
+        <strong><%= @babyfoods.size %>件</strong>
+      </p>
+    </section>
+
+    <% if @selected_ingredients.present? %>
+      <p class="search-results-description">
+        一致した食材数が多い順に表示しています。
+      </p>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <% if @babyfoods.present? %>
+      <div class="search-results-list">
+        <% @babyfoods.each do |babyfood| %>
+          <% matched_ingredients = babyfood.ingredients.select do |ingredient| %>
+            <% @selected_ingredient_ids.include?(ingredient.id) %>
+          <% end %>
 
-<%= link_to "トップへ戻る", root_path %>
+          <%= link_to(
+            babyfood_path(
+              babyfood,
+              ingredient_ids: @selected_ingredient_ids,
+              search_type: @search_type
+            ),
+            class: "babyfood-result-card"
+          ) do %>
+            <div class="babyfood-result-card__image-area">
+              <% if babyfood.image_url.present? %>
+                <%= image_tag(
+                  babyfood.image_url,
+                  alt: babyfood.name,
+                  class: "babyfood-result-card__image"
+                ) %>
+              <% else %>
+                <div class="babyfood-result-card__image-placeholder">
+                  <span aria-hidden="true">🍼</span>
+                  <span>画像準備中</span>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="babyfood-result-card__content">
+              <p class="babyfood-result-card__manufacturer">
+                <%= babyfood.manufacturer %>
+              </p>
+
+              <h2 class="babyfood-result-card__name">
+                <%= babyfood.name %>
+              </h2>
+
+              <dl class="babyfood-result-card__details">
+                <div>
+                  <dt>対象月齢：</dt>
+                  <dd>
+                    <%= babyfood.stage.presence || "未設定" %>
+                  </dd>
+                </div>
+
+                <% if @selected_ingredients.present? %>
+                  <div>
+                    <dt>一致した食材：</dt>
+
+                    <dd class="babyfood-result-card__matched-ingredients">
+                      <%= matched_ingredients.map(&:name).join("、") %>
+                    </dd>
+                  </div>
+                <% end %>
+              </dl>
+            </div>
+
+            <div class="babyfood-result-card__side">
+              <% if @selected_ingredients.present? %>
+                <div class="babyfood-match-count">
+                  <span class="babyfood-match-count__label">
+                    一致数
+                  </span>
+
+                  <span class="babyfood-match-count__number">
+                    <%= matched_ingredients.size %>
+
+                    <span class="babyfood-match-count__separator">
+                      /
+                    </span>
+
+                    <span class="babyfood-match-count__total">
+                      <%= @selected_ingredients.size %>
+                    </span>
+                  </span>
+                </div>
+              <% end %>
+
+              <span
+                class="babyfood-result-card__arrow"
+                aria-hidden="true"
+              >
+                ›
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <section class="search-results-empty">
+        <div class="search-results-empty__icon" aria-hidden="true">
+          🔍
+        </div>
+
+        <h2 class="h5 fw-bold">
+          条件に一致する商品が見つかりませんでした
+        </h2>
+
+        <p class="text-secondary">
+          食材の選択数を減らすか、OR検索をお試しください。
+        </p>
+
+        <%= link_to(
+          "検索条件を変更する",
+          root_path,
+          class: "btn btn-primary"
+        ) %>
+      </section>
+    <% end %>
+  </div>
+</section>
