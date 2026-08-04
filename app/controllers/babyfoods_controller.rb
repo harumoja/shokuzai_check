@@ -36,9 +36,24 @@ class BabyfoodsController < ApplicationController
   end
 
   def show
-    @babyfood = Babyfood
-      .active
-      .includes(:ingredients)
-      .find(params[:id])
-  end
+      requested_ingredient_ids = Array(params[:ingredient_ids])
+        .reject(&:blank?)
+        .map(&:to_i)
+        .uniq
+
+      @search_type = params[:search_type] == "or" ? "or" : "and"
+
+      @selected_ingredients = Ingredient
+        .active
+        .where(id: requested_ingredient_ids)
+        .display_order
+        .to_a
+
+      @selected_ingredient_ids = @selected_ingredients.map(&:id)
+
+      @babyfood = Babyfood
+        .active
+        .includes(:ingredients)
+        .find(params[:id])
+    end
 end
