@@ -267,3 +267,6 @@ Ruby on Railsを中心に開発を進めますが、Amazon Product Advertising A
 初めて実装する機能については、調査時間や試行錯誤を含めた見積もりが難しい可能性があります。そのため、MVPではコア機能（食材検索・商品表示・詳細表示）に優先順位を置き、小さな単位でIssueを分割しながら進める方針です。
 
 まずはRailsとHotwireでサービスを完成させ、保守性の高いMVC設計を身につけることを優先します。その後、Reactをキャッチアップし、技術的な検証を行った上で導入を検討する予定です。
+
+### 11.画面遷移図
+https://www.figma.com/design/nKRwZr6KdJqSF3yfXDG7JR/%E3%83%91%E3%83%91%E3%83%83%E3%81%A8%E9%A3%9F%E6%9D%90%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=pZFzepGuU9CpH7kf-1
