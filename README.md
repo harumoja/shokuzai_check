@@ -272,4 +272,4 @@ Ruby on Railsを中心に開発を進めますが、Amazon Product Advertising A
 https://www.figma.com/design/nKRwZr6KdJqSF3yfXDG7JR/%E3%83%91%E3%83%91%E3%83%83%E3%81%A8%E9%A3%9F%E6%9D%90%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=pZFzepGuU9CpH7kf-1
 
 ### 12.ER図
-[![Image from Gyazo](https://i.gyazo.com/71eb624edc0bb739ef7b2bd713e53469.png)](https://gyazo.com/71eb624edc0bb739ef7b2bd713e53469)
+[![Image from Gyazo](https://i.gyazo.com/9d6583ac97516fafdd3c9a2206577d47.png)](https://gyazo.com/9d6583ac97516fafdd3c9a2206577d47)
