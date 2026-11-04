@@ -8,9 +8,9 @@
       "RSpec"
     ],
     "project_name": "Myapp",
-    "timestamp": "2026-11-04T23:00:05.583+09:00",
+    "timestamp": "2026-11-05T00:43:49.880+09:00",
     "root": "/myapp",
-    "commit": "dc643a5e7ab8d180e05a10aaa96d8a28f81871ce",
+    "commit": "babe8b677c139761695d47c1e15360eb44454d16",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -859,5 +859,113 @@
     }
   },
   "groups": {},
-  "errors": {}
+  "errors": {},
+  "history": [
+    {
+      "created_at": "2026-11-04T14:00:05Z",
+      "branch": "feature/テスト環境導入",
+      "commit": "dc643a5e7ab8d180e05a10aaa96d8a28f81871ce",
+      "totals": {
+        "line": 81.57
+      },
+      "groups": {},
+      "files": {
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/babyfoods_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/homes_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/babyfood.rb": {
+          "line": 58.62
+        },
+        "app/models/ingredient.rb": {
+          "line": 85.71
+        },
+        "config/application.rb": {
+          "line": 100.0
+        },
+        "config/boot.rb": {
+          "line": 100.0
+        },
+        "config/environment.rb": {
+          "line": 100.0
+        },
+        "config/environments/test.rb": {
+          "line": 100.0
+        },
+        "config/initializers/assets.rb": {
+          "line": 100.0
+        },
+        "config/initializers/content_security_policy.rb": {
+          "line": 100.0
+        },
+        "config/initializers/filter_parameter_logging.rb": {
+          "line": 100.0
+        },
+        "config/initializers/inflections.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-04T15:43:49Z",
+      "branch": "feature/Rubocop導入",
+      "commit": "babe8b677c139761695d47c1e15360eb44454d16",
+      "totals": {
+        "line": 81.57
+      },
+      "groups": {},
+      "files": {
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/babyfoods_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/homes_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/babyfood.rb": {
+          "line": 58.62
+        },
+        "app/models/ingredient.rb": {
+          "line": 85.71
+        },
+        "config/application.rb": {
+          "line": 100.0
+        },
+        "config/boot.rb": {
+          "line": 100.0
+        },
+        "config/environment.rb": {
+          "line": 100.0
+        },
+        "config/environments/test.rb": {
+          "line": 100.0
+        },
+        "config/initializers/assets.rb": {
+          "line": 100.0
+        },
+        "config/initializers/content_security_policy.rb": {
+          "line": 100.0
+        },
+        "config/initializers/filter_parameter_logging.rb": {
+          "line": 100.0
+        },
+        "config/initializers/inflections.rb": {
+          "line": 100.0
+        }
+      }
+    }
+  ]
 }

@@ -58,6 +58,13 @@ group :development, :test do
   # テスト環境
   gem "rspec-rails", require: false
   gem 'factory_bot_rails', require: false
+
+  # Rubocop導入
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  
 end
 
 group :development do

@@ -1,0 +1,5 @@
+{
+  "ruby.useLanguageServer": true,
+  "ruby.lint": "rubocop",
+  "ruby.format": "rubocop"
+}
