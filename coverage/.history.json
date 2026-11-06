@@ -107,6 +107,62 @@
             "line": 100.0
           }
         }
+      },
+      {
+        "created_at": "2026-11-06T04:30:48Z",
+        "branch": "main",
+        "commit": "6378723d6e04e80b87072f1539cbf903bc2b20b1",
+        "totals": {
+          "line": 97.5
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 85.71
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
       }
     ]
   }
