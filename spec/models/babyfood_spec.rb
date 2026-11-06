@@ -1,4 +1,3 @@
-
 require "rails_helper"
 
 RSpec.describe Babyfood, type: :model do
@@ -114,7 +113,7 @@ RSpec.describe Babyfood, type: :model do
       active_food = babyfood
       active_food.save!
 
-      inactive_food = described_class.create!(
+      described_class.create!(
         name: "非公開の商品",
         manufacturer: "テストメーカー",
         stage: stage,
@@ -122,132 +121,144 @@ RSpec.describe Babyfood, type: :model do
       )
 
       # 公開商品だけが検索結果に含まれることを確認する
-      expect(described_class.active).to include(active_food)
-      expect(described_class.active).not_to include(inactive_food)
+      expect(described_class.active).to contain_exactly(active_food)
     end
   end
 
   describe ".search_by_ingredients" do
-    # テスト用の食材「にんじん」をDBに登録する
-  let!(:carrot) do
-  Ingredient.create!(
-    name: "にんじん",
-    category: "野菜",
-    stage: stage,
-    sort_order: 1,
-    is_active: true
-  )
-end
+    # 検索テストで使う食材と商品をまとめて作成する
+    def create_search_data
+      carrot = Ingredient.create!(
+        name: "にんじん",
+        category: "野菜",
+        stage: stage,
+        sort_order: 1,
+        is_active: true
+      )
 
-# テスト用の食材「じゃがいも」をDBに登録する
-let!(:potato) do
-  Ingredient.create!(
-    name: "じゃがいも",
-    category: "穀類・いも類",
-    stage: stage,
-    sort_order: 2,
-    is_active: true
-  )
-end
+      potato = Ingredient.create!(
+        name: "じゃがいも",
+        category: "穀類・いも類",
+        stage: stage,
+        sort_order: 2,
+        is_active: true
+      )
 
-    let!(:both_food) do
-      described_class.create!(
+      both_food = described_class.create!(
         name: "にんじんとじゃがいも",
         manufacturer: "メーカーA",
         stage: stage,
         is_active: true,
         ingredients: [carrot, potato]
       )
-    end
 
-    let!(:carrot_food) do
-      described_class.create!(
+      carrot_food = described_class.create!(
         name: "にんじんだけ",
         manufacturer: "メーカーB",
         stage: stage,
         is_active: true,
         ingredients: [carrot]
       )
-    end
 
-    let!(:inactive_food) do
-      described_class.create!(
+      inactive_food = described_class.create!(
         name: "非公開の商品",
         manufacturer: "メーカーC",
         stage: stage,
         is_active: false,
         ingredients: [carrot, potato]
       )
+
+      {
+        carrot: carrot,
+        potato: potato,
+        both_food: both_food,
+        carrot_food: carrot_food,
+        inactive_food: inactive_food
+      }
     end
 
+    # letは1つだけにして、必要なデータをまとめて取得する
+    let(:search_data) { create_search_data }
+
     it "OR検索では、いずれかの食材を含む商品を取得すること" do
-      # にんじん、じゃがいものどちらかを含む商品を検索する
+      data = search_data
+
       results = described_class.search_by_ingredients(
-        ingredient_ids: [carrot.id, potato.id],
+        ingredient_ids: [data[:carrot].id, data[:potato].id],
         search_type: "or"
       )
 
-      expect(results).to contain_exactly(both_food, carrot_food)
+      expect(results).to contain_exactly(data[:both_food], data[:carrot_food])
     end
 
     it "AND検索では、すべての食材を含む商品だけを取得すること" do
-      # にんじんとじゃがいもの両方を含む商品を検索する
+      data = search_data
+
       results = described_class.search_by_ingredients(
-        ingredient_ids: [carrot.id, potato.id],
+        ingredient_ids: [data[:carrot].id, data[:potato].id],
         search_type: "and"
       )
 
-      expect(results).to contain_exactly(both_food)
+      expect(results).to contain_exactly(data[:both_food])
     end
 
     it "検索方法がor以外の場合はAND検索になること" do
-      # 想定外の検索方法が渡された場合の動作を確認する
+      data = search_data
+
       results = described_class.search_by_ingredients(
-        ingredient_ids: [carrot.id, potato.id],
+        ingredient_ids: [data[:carrot].id, data[:potato].id],
         search_type: "unknown"
       )
 
-      expect(results).to contain_exactly(both_food)
+      expect(results).to contain_exactly(data[:both_food])
     end
 
     it "検索食材が空の場合は公開商品をすべて取得すること" do
-      # 食材を何も選択していない状態を想定する
+      data = search_data
+
       results = described_class.search_by_ingredients(
         ingredient_ids: [],
         search_type: "and"
       )
 
-      expect(results).to contain_exactly(both_food, carrot_food)
+      expect(results).to contain_exactly(data[:both_food], data[:carrot_food])
     end
 
     it "非公開商品は検索結果に含まれないこと" do
-      # 非公開商品にも一致する食材があるが、結果から除外する
+      data = search_data
+
       results = described_class.search_by_ingredients(
-        ingredient_ids: [carrot.id],
+        ingredient_ids: [data[:carrot].id],
         search_type: "or"
       )
 
-      expect(results).not_to include(inactive_food)
+      expect(results).not_to include(data[:inactive_food])
     end
   end
 
   describe "#matched_ingredients_count" do
-    it "選択した食材と一致する件数を返すこと" do
-      # 食材のIDを持つオブジェクトを用意する
-      ingredient1 = Ingredient.new(id: 1)
-      ingredient2 = Ingredient.new(id: 2)
+    # DBには保存せず、テスト用の商品を用意する
+    let(:babyfood) { described_class.new }
 
-      # 商品に2種類の食材が含まれる状態を作る
+    # テスト用の食材を用意する
+    let(:carrot) { Ingredient.new(id: 1) }
+    let(:potato) { Ingredient.new(id: 2) }
+
+    before do
+      # 商品に2種類の食材が含まれる状態を再現する
       allow(babyfood).to receive(:ingredients)
-        .and_return([ingredient1, ingredient2])
+        .and_return([carrot, potato])
+    end
 
-      # 1つだけ一致する場合は1を返す
-      expect(babyfood.matched_ingredients_count([1])).to eq(1)
-
-      # 2つとも一致する場合は2を返す
+    it "選択した食材が2件一致する場合は2を返すこと" do
       expect(babyfood.matched_ingredients_count([1, 2])).to eq(2)
+    end
 
-      # 一致しない場合は0を返す
+    it "選択した食材が1件一致する場合は1を返すこと" do
+      expect(babyfood.matched_ingredients_count([1])).to eq(1)
+    end
+
+    it "一致する食材がない場合は0を返すこと" do
       expect(babyfood.matched_ingredients_count([3])).to eq(0)
     end
   end

@@ -37,6 +37,10 @@ Metrics:
 Layout/LineLength:
   Enabled: false
 
+# RSpecのテストの長さ
+RSpec/ExampleLength:
+  Max: 10
+
 # メソッドの改行ルール
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented

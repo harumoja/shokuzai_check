@@ -163,6 +163,692 @@
             "line": 100.0
           }
         }
+      },
+      {
+        "created_at": "2026-11-06T04:43:12Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {}
+      },
+      {
+        "created_at": "2026-11-06T04:43:22Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {}
+      },
+      {
+        "created_at": "2026-11-06T04:44:21Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T04:44:33Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 82.5
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 58.62
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 85.71
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T04:44:42Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T04:49:30Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T04:53:40Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T04:59:02Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T05:02:11Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T05:16:35Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 97.5
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 85.71
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T05:16:43Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T05:19:01Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T05:21:35Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-06T05:22:07Z",
+        "branch": "feature/CI設定_1",
+        "commit": "ea0a942b57244fd03a5dd887bfb146938e86919d",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          }
+        }
       }
     ]
   }
