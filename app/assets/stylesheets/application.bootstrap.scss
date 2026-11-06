@@ -478,6 +478,32 @@ main {
   font-size: 3rem;
 }
 
+/* フッターナビゲーション */
+.site-footer__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 12px;
+}
+
+/* フッターリンク */
+.site-footer__link {
+  color: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  text-decoration: underline;
+}
+
+.site-footer__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
 @media (max-width: 767.98px) {
   .search-results-header {
     grid-template-columns: auto 1fr auto;
@@ -958,4 +984,30 @@ main {
     padding: 0.65rem 0.85rem;
     font-size: 0.85rem;
   }
+
+  /* フッターナビゲーション */
+.site-footer__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 12px;
+}
+
+/* フッターリンク */
+.site-footer__link {
+  color: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  text-decoration: underline;
+}
+
+.site-footer__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
 }
