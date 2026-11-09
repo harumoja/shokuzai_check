@@ -41,6 +41,10 @@ Layout/LineLength:
 RSpec/ExampleLength:
   Max: 10
 
+# デフォルトの1から2に変更
+RSpec/MultipleExpectations:
+  Max: 2
+
 # メソッドの改行ルール
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
