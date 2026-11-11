@@ -1097,6 +1097,219 @@
             "line": 100.0
           }
         }
+      },
+      {
+        "created_at": "2026-11-11T05:31:46Z",
+        "branch": "feature/表示用原材料名の機能追加",
+        "commit": "56aed70c82faf94d82ff0b395880b640b4317f78",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/controllers/application_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/babyfoods_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/homes_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/static_pages_controller.rb": {
+            "line": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          },
+          "config/routes.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-11T05:34:32Z",
+        "branch": "feature/表示用原材料名の機能追加",
+        "commit": "56aed70c82faf94d82ff0b395880b640b4317f78",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/controllers/application_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/babyfoods_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/homes_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/static_pages_controller.rb": {
+            "line": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          },
+          "config/routes.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-11T05:34:46Z",
+        "branch": "feature/表示用原材料名の機能追加",
+        "commit": "56aed70c82faf94d82ff0b395880b640b4317f78",
+        "totals": {
+          "line": 100.0
+        },
+        "groups": {},
+        "files": {
+          "app/controllers/application_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/babyfoods_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/homes_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/static_pages_controller.rb": {
+            "line": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/babyfoods_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/homes_helper.rb": {
+            "line": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood.rb": {
+            "line": 100.0
+          },
+          "app/models/babyfood_ingredient.rb": {
+            "line": 100.0
+          },
+          "app/models/ingredient.rb": {
+            "line": 100.0
+          },
+          "config/application.rb": {
+            "line": 100.0
+          },
+          "config/boot.rb": {
+            "line": 100.0
+          },
+          "config/environment.rb": {
+            "line": 100.0
+          },
+          "config/environments/test.rb": {
+            "line": 100.0
+          },
+          "config/initializers/assets.rb": {
+            "line": 100.0
+          },
+          "config/initializers/content_security_policy.rb": {
+            "line": 100.0
+          },
+          "config/initializers/filter_parameter_logging.rb": {
+            "line": 100.0
+          },
+          "config/initializers/inflections.rb": {
+            "line": 100.0
+          },
+          "config/routes.rb": {
+            "line": 100.0
+          }
+        }
       }
     ]
   }
