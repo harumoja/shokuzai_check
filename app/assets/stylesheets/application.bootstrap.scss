@@ -1011,3 +1011,67 @@ main {
   outline-offset: 3px;
 }
 }
+
+/* 利用規約・プライバシーポリシー */
+.legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  line-height: 1.9;
+}
+
+.legal-page h1 {
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.legal-page section {
+  margin-top: 32px;
+}
+
+.legal-page h2 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.legal-page p {
+  margin-bottom: 16px;
+}
+
+.legal-page ol,
+.legal-page ul {
+  padding-left: 1.5em;
+  margin-bottom: 16px;
+}
+
+.legal-page li {
+  margin-bottom: 8px;
+}
+
+.legal-page__date {
+  margin-top: 40px;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.site-footer__affiliate {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .legal-page {
+    padding: 24px 16px 48px;
+  }
+
+  .legal-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .legal-page h2 {
+    font-size: 1.05rem;
+  }
+}
