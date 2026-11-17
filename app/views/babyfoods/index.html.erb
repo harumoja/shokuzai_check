@@ -61,9 +61,7 @@
     <% if @babyfoods.present? %>
       <div class="search-results-list">
         <% @babyfoods.each do |babyfood| %>
-          <% matched_ingredients = babyfood.ingredients.select do |ingredient| %>
-            <% @selected_ingredient_ids.include?(ingredient.id) %>
-          <% end %>
+          <% matched_relations = babyfood.matched_babyfood_ingredients(@selected_ingredient_ids) %>
 
           <%= link_to(
             babyfood_path(
@@ -110,7 +108,7 @@
                     <dt>一致した食材：</dt>
 
                     <dd class="babyfood-result-card__matched-ingredients">
-                      <%= matched_ingredients.map(&:name).join("、") %>
+                      <%= matched_relations.map(&:raw_name).join("、") %>
                     </dd>
                   </div>
                 <% end %>
@@ -125,7 +123,7 @@
                   </span>
 
                   <span class="babyfood-match-count__number">
-                    <%= matched_ingredients.size %>
+                    <%= babyfood.matched_ingredients_count(@selected_ingredient_ids) %>
 
                     <span class="babyfood-match-count__separator">
                       /
@@ -142,7 +140,6 @@
                 class="babyfood-result-card__arrow"
                 aria-hidden="true"
               >
-                ›
               </span>
             </div>
           <% end %>

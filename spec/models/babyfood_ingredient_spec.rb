@@ -1,9 +1,6 @@
-# spec/models/babyfood_ingredient_spec.rb
-
 require "rails_helper"
 
 RSpec.describe BabyfoodIngredient, type: :model do
-  # テスト用の商品をDBに登録する
   let(:babyfood) do
     Babyfood.create!(
       name: "野菜入りベビーフード",
@@ -13,7 +10,6 @@ RSpec.describe BabyfoodIngredient, type: :model do
     )
   end
 
-  # テスト用の食材をDBに登録する
   let(:ingredient) do
     Ingredient.create!(
       name: "にんじん",
@@ -24,7 +20,6 @@ RSpec.describe BabyfoodIngredient, type: :model do
     )
   end
 
-  # 別の食材を用意する
   let(:another_ingredient) do
     Ingredient.create!(
       name: "じゃがいも",
@@ -35,7 +30,6 @@ RSpec.describe BabyfoodIngredient, type: :model do
     )
   end
 
-  # 別の商品を用意する
   let(:another_babyfood) do
     Babyfood.create!(
       name: "にんじんペースト",
@@ -45,75 +39,98 @@ RSpec.describe BabyfoodIngredient, type: :model do
     )
   end
 
-  describe "関連付け" do
-    it "商品と食材が揃っていれば登録できること" do
-      # 商品と食材を関連付ける
-      relation = described_class.new(
+  # 必須項目を揃えた関連付けを作成する
+  def build_relation(**attributes)
+    described_class.new(
+      {
         babyfood: babyfood,
-        ingredient: ingredient
-      )
+        ingredient: ingredient,
+        raw_name: "にんじん",
+        sort_order: 1
+      }.merge(attributes)
+    )
+  end
 
-      expect(relation).to be_valid
+  describe "関連付け" do
+    it "必要な情報が揃っていれば登録できること" do
+      expect(build_relation).to be_valid
     end
 
     it "商品が存在しない場合は無効になること" do
-      # 商品を指定せずに関連付けを作成する
-      relation = described_class.new(
-        ingredient: ingredient
-      )
+      relation = build_relation(babyfood: nil)
 
-      # belongs_toにより商品が必須になる
       expect(relation).not_to be_valid
     end
 
     it "食材が存在しない場合は無効になること" do
-      # 食材を指定せずに関連付けを作成する
-      relation = described_class.new(
-        babyfood: babyfood
-      )
+      relation = build_relation(ingredient: nil)
 
       expect(relation).not_to be_valid
     end
 
-    it "同じ商品と食材の組み合わせを重複登録できないこと" do
-      # 最初の関連付けをDBに保存する
-      described_class.create!(
-        babyfood: babyfood,
-        ingredient: ingredient
-      )
+    it "同じ商品・食材・原材料名の重複登録を防ぐこと" do
+      build_relation.save!
 
-      # 同じ商品と食材で2件目を作成する
-      duplicate = described_class.new(
-        babyfood: babyfood,
-        ingredient: ingredient
-      )
+      duplicate = build_relation
 
-      # 重複登録を防止できることを確認する
       expect(duplicate).not_to be_valid
     end
 
-    it "同じ商品でも食材が違えば登録できること" do
-      # 最初の商品と食材の組み合わせを登録する
-      described_class.create!(babyfood: babyfood, ingredient: ingredient)
+    it "同じ商品と食材でも原材料名が異なれば登録できること" do
+      build_relation(raw_name: "にんじん粉末").save!
 
-      # 別の食材なら同じ商品に登録できる
-      relation = described_class.new(
-        babyfood: babyfood,
-        ingredient: another_ingredient
+      relation = build_relation(raw_name: "にんじんペースト")
+
+      expect(relation).to be_valid
+    end
+
+    it "同じ商品でも食材が違えば登録できること" do
+      build_relation.save!
+
+      relation = build_relation(
+        ingredient: another_ingredient,
+        raw_name: "じゃがいも"
       )
 
       expect(relation).to be_valid
     end
 
     it "同じ食材でも商品が違えば登録できること" do
-      # 最初の商品と食材の組み合わせを登録する
-      described_class.create!(babyfood: babyfood, ingredient: ingredient)
+      build_relation.save!
 
-      # 別の商品なら同じ食材を登録できる
-      relation = described_class.new(
-        babyfood: another_babyfood,
-        ingredient: ingredient
-      )
+      relation = build_relation(babyfood: another_babyfood)
+
+      expect(relation).to be_valid
+    end
+  end
+
+  describe "バリデーション" do
+    it "原材料名が空の場合は無効になること" do
+      relation = build_relation(raw_name: nil)
+
+      expect(relation).not_to be_valid
+    end
+
+    it "原材料名が空文字の場合は無効になること" do
+      relation = build_relation(raw_name: "")
+
+      expect(relation).not_to be_valid
+    end
+
+    it "表示順が負の数の場合は無効になること" do
+      relation = build_relation(sort_order: -1)
+
+      expect(relation).not_to be_valid
+    end
+
+    it "表示順が小数の場合は無効になること" do
+      relation = build_relation(sort_order: 1.5)
+
+      expect(relation).not_to be_valid
+    end
+
+    it "表示順が0の場合は有効になること" do
+      relation = build_relation(sort_order: 0)
 
       expect(relation).to be_valid
     end

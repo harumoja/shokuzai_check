@@ -88,23 +88,33 @@ class SeedLoader
         end
     end
 
+    
     def load_babyfood_ingredients
       CSV.foreach(
         Rails.root.join("db/seeds/babyfood_ingredients.csv"),
         headers: true
       ) do |row|
-
+        # 商品名から対象商品を取得
         babyfood = Babyfood.find_by!(
           name: row["babyfood_name"]
         )
 
+        # 検索用の代表食材を取得
         ingredient = Ingredient.find_by!(
           name: row["ingredient_name"]
         )
 
+        # 同じ商品・代表食材でも、
+        # 正式な原材料名が異なれば別レコードとして登録する
         relation = BabyfoodIngredient.find_or_initialize_by(
           babyfood: babyfood,
-          ingredient: ingredient
+          ingredient: ingredient,
+          raw_name: row["raw_name"]
+        )
+
+        # 原材料の表示順を設定
+        relation.assign_attributes(
+          sort_order: row["sort_order"]
         )
 
         relation.save!

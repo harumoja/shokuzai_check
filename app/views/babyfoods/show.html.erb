@@ -1,6 +1,4 @@
-<% matched_ingredients = @babyfood.ingredients.select do |ingredient| %>
-  <% @selected_ingredient_ids.include?(ingredient.id) %>
-<% end %>
+<% matched_relations = @babyfood.matched_babyfood_ingredients(@selected_ingredient_ids) %>
 
 <% back_path =
   if @selected_ingredient_ids.present?
@@ -70,8 +68,8 @@
                 <dt>一致した食材：</dt>
 
                 <dd class="babyfood-detail-matched-ingredients">
-                  <% if matched_ingredients.present? %>
-                    <%= matched_ingredients.map(&:name).join("、") %>
+                  <% if matched_relations.present? %>
+                    <%= matched_relations.map(&:raw_name).join("、") %>
                   <% else %>
                     なし
                   <% end %>
@@ -82,9 +80,11 @@
                 <dt>一致数：</dt>
 
                 <dd class="babyfood-detail-match-count">
-                  <strong><%= matched_ingredients.size %></strong>
-                  /
-                  <%= @selected_ingredients.size %>件一致
+                  <strong>
+                  <%= @babyfood.matched_ingredients_count(@selected_ingredient_ids) %>
+                </strong>
+                /
+                <%= @selected_ingredients.size %>件一致
                 </dd>
               </div>
             <% end %>
@@ -97,21 +97,20 @@
           原材料
         </h2>
 
-        <% if @babyfood.ingredients.present? %>
+        <% if @babyfood.babyfood_ingredients.present? %>
           <ul class="babyfood-ingredients-list">
-            <% @babyfood.ingredients.each do |ingredient| %>
-              <% is_matched = @selected_ingredient_ids.include?(ingredient.id) %>
+
+            <% @babyfood.babyfood_ingredients
+                        .sort_by { |relation| [relation.sort_order, relation.id] }
+                        .each do |relation| %>
+
+              <% is_matched = @selected_ingredient_ids.include?(relation.ingredient_id) %>
 
               <li class="<%= "is-matched" if is_matched %>">
-                <%= ingredient.name %>
-
-                <% if is_matched %>
-                  <span class="visually-hidden">
-                    選択した食材と一致
-                  </span>
-                <% end %>
+                <%= relation.raw_name %>
               </li>
             <% end %>
+
           </ul>
         <% else %>
           <p class="text-secondary mb-0">
