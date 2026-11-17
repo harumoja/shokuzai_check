@@ -179,15 +179,20 @@
           </div>
         </section>
 
-        <div class="d-grid">
-          <%= button_tag(
-            type: "submit",
-            class: "home-search-button"
-          ) do %>
-            <span aria-hidden="true">⌕</span>
-            ベビーフードを検索する
-          <% end %>
-        </div>
+      <div class="d-grid">
+        <%= button_tag(
+          type: "submit",
+          class: "home-search-button"
+        ) do %>
+          <%= image_tag(
+            "search-icon.png",
+            class: "home-search-icon",
+            alt: "",
+            aria: { hidden: true }
+          ) %>
+          ベビーフードを検索する
+        <% end %>
+      </div>
       <% end %>
     </section>
   </div>

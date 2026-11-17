@@ -219,13 +219,26 @@ main {
 }
 
 .home-search-button {
-  min-height: 56px;
+  height: 56px;
   border: 0;
   border-radius: 0.5rem;
   background-color: #ff9800;
   color: #ffffff;
   font-size: 1.15rem;
   font-weight: 700;
+
+  // アイコンと文字を横並びにして中央揃え
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.home-search-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .home-search-button:hover {
