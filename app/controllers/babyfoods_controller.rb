@@ -21,7 +21,7 @@ class BabyfoodsController < ApplicationController
     babyfoods = Babyfood.search_by_ingredients(
       ingredient_ids: @selected_ingredient_ids,
       search_type: @search_type
-    ).includes(:ingredients).to_a
+    ).includes(:babyfood_ingredients).to_a
 
     # モデルに並び替えを依頼する
     @babyfoods =
@@ -53,7 +53,7 @@ class BabyfoodsController < ApplicationController
 
     @babyfood = Babyfood
       .active
-      .includes(:ingredients)
+      .includes(:babyfood_ingredients)
       .find(params.expect(:id))
   end
 end

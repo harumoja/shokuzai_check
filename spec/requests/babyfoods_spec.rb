@@ -16,14 +16,35 @@ RSpec.describe "Babyfoods", type: :request do
 
   # 商品を作成する共通メソッド
   def create_babyfood(name:, ingredients: [], active: true, **attributes)
-    Babyfood.create!(
+    babyfood = Babyfood.create!(
       {
         name: name,
         manufacturer: "テストメーカー",
         stage: "初期",
-        is_active: active,
-        ingredients: ingredients
+        is_active: active
       }.merge(attributes)
+    )
+
+    # 中間テーブルに正式な原材料名と表示順を登録する
+    ingredients.each_with_index do |ingredient, index|
+      BabyfoodIngredient.create!(
+        babyfood: babyfood,
+        ingredient: ingredient,
+        raw_name: ingredient.name,
+        sort_order: index + 1
+      )
+    end
+
+    babyfood
+  end
+
+  # 商品に正式な原材料名と表示順を登録する
+  def add_babyfood_ingredient(food, ingredient, raw_name, sort_order = 1)
+    BabyfoodIngredient.create!(
+      babyfood: food,
+      ingredient: ingredient,
+      raw_name: raw_name,
+      sort_order: sort_order
     )
   end
 
@@ -166,6 +187,16 @@ RSpec.describe "Babyfoods", type: :request do
       names = response.parsed_body.css(".babyfood-result-card__name").map(&:text)
       expect(names.map(&:strip)).to eq(["商品B", "商品A"])
     end
+
+    it "検索結果に正式な原材料名を表示すること" do
+      carrot = create_ingredient(name: "にんじん")
+      food = create_babyfood(name: "野菜ミックス")
+      add_babyfood_ingredient(food, carrot, "にんじん粉末")
+
+      get babyfoods_path, params: { ingredient_ids: [carrot.id] }
+
+      expect(response.body).to include("にんじん粉末")
+    end
   end
 
   describe "GET /babyfoods/:id" do
@@ -270,6 +301,32 @@ RSpec.describe "Babyfoods", type: :request do
           "a[href='https://example.com/rakuten'][target='_blank']"
         )
       ).not_to be_nil
+    end
+
+    it "商品詳細に正式な原材料名を表示すること" do
+      carrot = create_ingredient(name: "にんじん")
+      food = create_babyfood(name: "野菜ミックス")
+      add_babyfood_ingredient(food, carrot, "にんじんペースト")
+
+      get babyfood_path(food), params: { ingredient_ids: [carrot.id] }
+
+      expect(response.body).to include("にんじんペースト")
+    end
+
+    it "原材料をsort_order順に表示すること" do
+      carrot = create_ingredient(name: "にんじん")
+      potato = create_ingredient(name: "じゃがいも")
+      food = create_babyfood(name: "野菜ミックス")
+
+      add_babyfood_ingredient(food, carrot, "にんじん粉末", 2)
+      add_babyfood_ingredient(food, potato, "じゃがいもペースト", 1)
+
+      get babyfood_path(food)
+
+      body = response.body
+      expect(
+        body.index("じゃがいもペースト")
+      ).to be < body.index("にんじん粉末")
     end
   end
 end

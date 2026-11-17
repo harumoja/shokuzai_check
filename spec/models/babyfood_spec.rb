@@ -126,7 +126,7 @@ RSpec.describe Babyfood, type: :model do
   end
 
   describe ".search_by_ingredients" do
-    # 検索テストで使う食材と商品をまとめて作成する
+    # テスト用の食材を作成する
     def create_search_data
       carrot = Ingredient.create!(
         name: "にんじん",
@@ -148,25 +148,38 @@ RSpec.describe Babyfood, type: :model do
         name: "にんじんとじゃがいも",
         manufacturer: "メーカーA",
         stage: stage,
-        is_active: true,
-        ingredients: [carrot, potato]
+        is_active: true
       )
 
       carrot_food = described_class.create!(
         name: "にんじんだけ",
         manufacturer: "メーカーB",
         stage: stage,
-        is_active: true,
-        ingredients: [carrot]
+        is_active: true
       )
 
       inactive_food = described_class.create!(
         name: "非公開の商品",
         manufacturer: "メーカーC",
         stage: stage,
-        is_active: false,
-        ingredients: [carrot, potato]
+        is_active: false
       )
+
+      # 各商品に原材料を関連付ける
+      {
+        both_food => [carrot, potato],
+        carrot_food => [carrot],
+        inactive_food => [carrot, potato]
+      }.each do |food, ingredients|
+        ingredients.each_with_index do |ingredient, index|
+          BabyfoodIngredient.create!(
+            babyfood: food,
+            ingredient: ingredient,
+            raw_name: ingredient.name,
+            sort_order: index + 1
+          )
+        end
+      end
 
       {
         carrot: carrot,
@@ -175,6 +188,16 @@ RSpec.describe Babyfood, type: :model do
         carrot_food: carrot_food,
         inactive_food: inactive_food
       }
+    end
+
+    # 同じ代表食材に別の正式原材料名を追加する
+    def add_carrot_variant(data)
+      BabyfoodIngredient.create!(
+        babyfood: data[:both_food],
+        ingredient: data[:carrot],
+        raw_name: "にんじん粉末",
+        sort_order: 3
+      )
     end
 
     # letは1つだけにして、必要なデータをまとめて取得する
@@ -234,32 +257,91 @@ RSpec.describe Babyfood, type: :model do
 
       expect(results).not_to include(data[:inactive_food])
     end
+
+    it "同じ代表食材に複数の原材料名があってもAND検索できること" do
+      data = search_data
+      add_carrot_variant(data)
+
+      results = described_class.search_by_ingredients(
+        ingredient_ids: [data[:carrot].id, data[:potato].id],
+        search_type: "and"
+      )
+
+      expect(results).to contain_exactly(data[:both_food])
+    end
   end
 
   describe "#matched_ingredients_count" do
-    # DBには保存せず、テスト用の商品を用意する
-    let(:babyfood) { described_class.new }
+    let(:babyfood) do
+      described_class.create!(
+        name: "野菜のベビーフード",
+        manufacturer: "テストメーカー",
+        stage: stage,
+        is_active: true
+      )
+    end
 
-    # テスト用の食材を用意する
-    let(:carrot) { Ingredient.new(id: 1) }
-    let(:potato) { Ingredient.new(id: 2) }
+    let(:carrot) do
+      Ingredient.create!(
+        name: "にんじん",
+        category: "野菜",
+        stage: stage,
+        is_active: true
+      )
+    end
+
+    let(:potato) do
+      Ingredient.create!(
+        name: "じゃがいも",
+        category: "穀類・いも類",
+        stage: stage,
+        is_active: true
+      )
+    end
 
     before do
-      # 商品に2種類の食材が含まれる状態を再現する
-      allow(babyfood).to receive(:ingredients)
-        .and_return([carrot, potato])
+      BabyfoodIngredient.create!(
+        babyfood: babyfood,
+        ingredient: carrot,
+        raw_name: "にんじん",
+        sort_order: 1
+      )
+
+      BabyfoodIngredient.create!(
+        babyfood: babyfood,
+        ingredient: potato,
+        raw_name: "じゃがいも",
+        sort_order: 2
+      )
     end
 
     it "選択した食材が2件一致する場合は2を返すこと" do
-      expect(babyfood.matched_ingredients_count([1, 2])).to eq(2)
+      expect(
+        babyfood.matched_ingredients_count([carrot.id, potato.id])
+      ).to eq(2)
     end
 
     it "選択した食材が1件一致する場合は1を返すこと" do
-      expect(babyfood.matched_ingredients_count([1])).to eq(1)
+      expect(
+        babyfood.matched_ingredients_count([carrot.id])
+      ).to eq(1)
     end
 
     it "一致する食材がない場合は0を返すこと" do
-      expect(babyfood.matched_ingredients_count([3])).to eq(0)
+      expect(babyfood.matched_ingredients_count([0])).to eq(0)
+    end
+
+    it "同じ代表食材に複数の原材料名があっても1件として数えること" do
+      BabyfoodIngredient.create!(
+        babyfood: babyfood,
+        ingredient: carrot,
+        raw_name: "にんじん粉末",
+        sort_order: 3
+      )
+
+      expect(
+        babyfood.matched_ingredients_count([carrot.id])
+      ).to eq(1)
     end
   end
 

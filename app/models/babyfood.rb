@@ -74,7 +74,7 @@ class Babyfood < ApplicationRecord
         active.containing_all_ingredients(ingredient_ids)
       end
 
-    results.includes(:ingredients)
+    results.includes(:babyfood_ingredients)
   end
 
   # 検索結果を、一致した食材数が多い順に並べる
@@ -95,11 +95,21 @@ class Babyfood < ApplicationRecord
     end
   end
 
-  # この商品に含まれる食材のうち、
-  # 選択された食材と一致する件数を返す
+  # 選択された代表食材のうち、
+  # この商品に含まれる食材の種類数を返す
   def matched_ingredients_count(ingredient_ids)
-    ingredients.count do |ingredient|
-      ingredient_ids.include?(ingredient.id)
-    end
+    matched_ids = babyfood_ingredients
+      .map(&:ingredient_id)
+      .uniq
+
+    (matched_ids & ingredient_ids).size
+  end
+
+  # 選択された代表食材に対応する
+  # 商品の正式な原材料レコードを返す
+  def matched_babyfood_ingredients(ingredient_ids)
+    babyfood_ingredients
+      .select { |relation| ingredient_ids.include?(relation.ingredient_id) }
+      .sort_by { |relation| [relation.sort_order, relation.id] }
   end
 end
