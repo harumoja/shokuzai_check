@@ -8,9 +8,9 @@
       "RSpec"
     ],
     "project_name": "Myapp",
-    "timestamp": "2026-11-17T12:03:35.616+09:00",
+    "timestamp": "2026-11-17T15:03:16.496+09:00",
     "root": "/myapp",
-    "commit": "50c305b89ff24ea999a7aff4f890a7767fbb657c",
+    "commit": "2a90467a63c6d8379e2c24dbc64961632c2c4ecd",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -2718,6 +2718,77 @@
       "created_at": "2026-11-17T03:03:35Z",
       "branch": "feature/AddRawname",
       "commit": "50c305b89ff24ea999a7aff4f890a7767fbb657c",
+      "totals": {
+        "line": 100.0
+      },
+      "groups": {},
+      "files": {
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/babyfoods_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/homes_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/static_pages_controller.rb": {
+          "line": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/babyfoods_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/homes_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/babyfood.rb": {
+          "line": 100.0
+        },
+        "app/models/babyfood_ingredient.rb": {
+          "line": 100.0
+        },
+        "app/models/ingredient.rb": {
+          "line": 100.0
+        },
+        "config/application.rb": {
+          "line": 100.0
+        },
+        "config/boot.rb": {
+          "line": 100.0
+        },
+        "config/environment.rb": {
+          "line": 100.0
+        },
+        "config/environments/test.rb": {
+          "line": 100.0
+        },
+        "config/initializers/assets.rb": {
+          "line": 100.0
+        },
+        "config/initializers/content_security_policy.rb": {
+          "line": 100.0
+        },
+        "config/initializers/filter_parameter_logging.rb": {
+          "line": 100.0
+        },
+        "config/initializers/inflections.rb": {
+          "line": 100.0
+        },
+        "config/routes.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-17T06:03:16Z",
+      "branch": "main",
+      "commit": "2a90467a63c6d8379e2c24dbc64961632c2c4ecd",
       "totals": {
         "line": 100.0
       },
